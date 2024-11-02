@@ -1,0 +1,22 @@
+<!-- src/app/article-list/article-list.component.html -->
+<div class="container mt-4">
+    <input type="text" class="form-control mb-3" [(ngModel)]="searchTerm" placeholder="Search by title" />
+  
+    <button class="btn btn-primary mb-3" (click)="toggleForm()">Add New Article</button>
+  
+    <app-article-form *ngIf="showForm" (addArticle)="addArticle($event)"></app-article-form>
+  
+    <div class="list-group">
+      <div *ngFor="let article of filteredArticles" class="list-group-item">
+        <h5>{{ article.title }}</h5>
+        <img [src]="article.photo" alt="Article photo" class="img-thumbnail" width="100" />
+        <p>{{ article.description }}</p>
+        <p>Published on: {{ article.publicationDate | date }}</p>
+        <p>Score: {{ article.score }}</p>
+        <button class="btn btn-success" (click)="upVote(article)">Up</button>
+        <button class="btn btn-danger" (click)="downVote(article)">Down</button>
+        <hr />
+      </div>
+    </div>
+  </div>
+  
